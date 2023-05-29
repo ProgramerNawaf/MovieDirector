@@ -33,11 +33,17 @@ public class TeacherService {
         tOld.setEmail(t.getEmail());
         teacherRepo.save(tOld);
     }
-
+    //only deletes when teacher has no courses
     public void deleteTeacher(Integer id){
         Teacher tOld =teacherRepo.findTeacherById(id);
         if(tOld == null)
             throw new ApiException("no teacher with this id!");
         teacherRepo.delete(tOld);
+    }
+
+    public Teacher getTeacher(Integer id){
+        if(teacherRepo.findTeacherById(id) == null)
+            throw new ApiException("No teacher with this id!");
+        return teacherRepo.findTeacherById(id);
     }
 }

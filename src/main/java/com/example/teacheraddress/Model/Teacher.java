@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -30,6 +32,9 @@ public class Teacher {
     @OneToOne(mappedBy = "teacher",cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Address address;
-
+    //only deletes when teacher has no courses
+    @OneToMany(mappedBy = "teacherCourses",cascade = {CascadeType.PERSIST, CascadeType.REFRESH} )
+    @PrimaryKeyJoinColumn
+    private Set<Course> courses;
 
 }
