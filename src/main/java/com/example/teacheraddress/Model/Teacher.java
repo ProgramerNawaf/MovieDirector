@@ -33,7 +33,7 @@ public class Teacher {
     @PrimaryKeyJoinColumn
     private Address address;
     //only deletes when teacher has no courses
-    @OneToMany(mappedBy = "teacherCourses",cascade = {CascadeType.PERSIST, CascadeType.REFRESH} )
+    @OneToMany(mappedBy = "teacherCourses",cascade = CascadeType.DETACH )
     @PrimaryKeyJoinColumn
     private Set<Course> courses;
 
