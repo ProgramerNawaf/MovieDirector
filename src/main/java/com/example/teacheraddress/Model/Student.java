@@ -15,18 +15,17 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-public class Course {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(columnDefinition = "varchar(25) not null")
-    @NotNull(message = "name cant be null")
+    @NotNull(message = "name cant be null!")
     private String name;
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "teacher_id",referencedColumnName = "id")
-    private Teacher teacherCourses;
-    @ManyToMany
-    @JsonIgnore
-    private Set<Student> students;
+    @NotNull(message = "age cant be null!")
+    private Integer age;
+    @NotNull(message = "name cant be null!")
+    private String major;
+
+    @ManyToMany(mappedBy = "students" , cascade = CascadeType.DETACH)
+    private Set<Course> courses;
 }

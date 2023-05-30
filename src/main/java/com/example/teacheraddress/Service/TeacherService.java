@@ -50,8 +50,8 @@ public class TeacherService {
              courseRepo.save(c.get(i));
         }
 
-//
-//        teacherRepo.delete(t);
+
+        teacherRepo.delete(t);
     }
 
     public Teacher getTeacher(Integer id){

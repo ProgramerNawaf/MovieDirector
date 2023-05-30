@@ -36,5 +36,4 @@ public class Teacher {
     @OneToMany(mappedBy = "teacherCourses",cascade = CascadeType.DETACH )
     @PrimaryKeyJoinColumn
     private Set<Course> courses;
-
 }
