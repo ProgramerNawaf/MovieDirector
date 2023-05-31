@@ -49,6 +49,21 @@ public class StudentService {
         studentRepo.delete(studentRepo.findStudentById(id));
     }
 
+    public void changeMajor(Integer id, String major){
+        Student s = studentRepo.findStudentById(id);
+        if(s==null)
+            throw new ApiException("course with this id dosent exist!");
+        List<Course> courses =courseRepo.findCoursesByStudentsContains(s);
+
+        for(int i=0 ; i<courses.size() ; i++)
+            courses.get(i).getStudents().remove(s);
+
+        s.setMajor(major);
+        studentRepo.save(s);
+    }
+
+
+
     public void assignStudents(Integer studentId,Integer courseId){
         Course c =courseRepo.findCourseById(courseId);
         Student s =studentRepo.findStudentById(studentId);

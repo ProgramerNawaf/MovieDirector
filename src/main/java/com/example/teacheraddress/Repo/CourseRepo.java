@@ -17,4 +17,5 @@ public interface CourseRepo extends JpaRepository<Course,Integer> {
     List<Course> getTeacherCourses(Integer teacherId);
 
     List<Course> findCoursesByStudentsContains(Student s);
+
 }

@@ -49,8 +49,6 @@ public class TeacherService {
              c.get(i).setTeacherCourses(null);
              courseRepo.save(c.get(i));
         }
-
-
         teacherRepo.delete(t);
     }
 

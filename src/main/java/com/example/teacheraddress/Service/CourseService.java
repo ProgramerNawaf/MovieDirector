@@ -2,8 +2,10 @@ package com.example.teacheraddress.Service;
 
 import com.example.teacheraddress.ApiException.ApiException;
 import com.example.teacheraddress.Model.Course;
+import com.example.teacheraddress.Model.Student;
 import com.example.teacheraddress.Model.Teacher;
 import com.example.teacheraddress.Repo.CourseRepo;
+import com.example.teacheraddress.Repo.StudentRepo;
 import com.example.teacheraddress.Repo.TeacherRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ public class CourseService {
 
     private final CourseRepo courseRepo;
     private final TeacherRepo teacherRepo;
+    private final StudentRepo studentRepo;
 
     public List<Course> getCourses(){
         return courseRepo.findAll();
@@ -49,6 +52,13 @@ public class CourseService {
         }
         c.setTeacherCourses(t);
         courseRepo.save(c);
+    }
+
+    public List<Student> showStudents(Integer id){
+        Course c = courseRepo.findCourseById(id);
+        if(c==null)
+            throw new ApiException("course with this id dosent exist!");
+        return studentRepo.findStudentsByCoursesContains(c);
     }
 
     public String teacherName(Integer courseId){

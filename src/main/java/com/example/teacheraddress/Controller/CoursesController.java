@@ -41,6 +41,11 @@ public class CoursesController {
         courseService.assignCourses(teacherId,courseId);
         return ResponseEntity.status(200).body("Course assigned!");
     }
+    @GetMapping("/show-student/{courseId}")
+    public ResponseEntity assignStudents(@PathVariable Integer courseId){
+
+        return ResponseEntity.status(200).body(courseService.showStudents(courseId));
+    }
     @GetMapping("/teacher-name/{courseId}")
     public ResponseEntity teacherName(@PathVariable Integer courseId){
         return ResponseEntity.status(200).body("Teacher name is: "+courseService.teacherName(courseId));
